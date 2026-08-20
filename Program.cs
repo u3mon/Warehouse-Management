@@ -3,26 +3,41 @@
 var service = new CategoriesServices();
 var serviceProduct = new ProductcService();
 var serviceWarehouse = new WarehousesServices();
+var serviceStock = new StockService();
 
 
 while (true)
 {
+    System.Console.WriteLine();
     System.Console.WriteLine("====================================================");
     System.Console.WriteLine(@"
+    <--- CATEGORIES --->
     1 - Show all categories.
     2 - Add new category.
     3 - Update category description.
     4 - Delete category.
+
+    <--- PRODUCTS --->
     5 - Show all products. 
     6 - Add new product. 
     7 - Update product.
     8 - Delete product.
+    
+    <--- WAREHOUSES --->
     9 - Show all warehouses.
     10 - Add new warehouse.
     11 - Update warehouse.
     12 - Delete warehouse.
+
+    <--- STOCKS --->
+    13 - Show all stocks.
+    14 - Add new stock.
+    15 - Update stock.
+    16 - Delete stock.
     0 - 🚷 Exit!");
     System.Console.WriteLine("====================================================");
+    System.Console.WriteLine();
+    System.Console.Write("--->  ");
     var action = Console.ReadLine();
     switch (action)
     {
@@ -115,6 +130,37 @@ while (true)
             System.Console.Write("Enter warehouse's id to delete: ");
             var iddd = Convert.ToInt32(Console.ReadLine());
             serviceWarehouse.DeleteWarehouse(iddd);
+            break;
+
+        case "13":
+            System.Console.WriteLine("=================================================================================================");
+            serviceStock.ShowAllStocks();
+            System.Console.WriteLine("=================================================================================================");
+            break;
+        case "14":
+            System.Console.Write("Enter product id: ");
+            var spid = Convert.ToInt32(Console.ReadLine());
+            System.Console.Write("Enter warehouse id: ");
+            var swid = Convert.ToInt32(Console.ReadLine());
+            System.Console.Write("Enter quantity: ");
+            var squantity = Convert.ToInt32(Console.ReadLine());
+            serviceStock.AddNewStock(spid, swid, squantity);
+            break;
+        case "15":
+            Console.Write("Enter stock id to update: ");
+            var sid = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter new product id: ");
+            var spidd = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter new warehouse id: ");
+            var swidd = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter new quantity: ");
+            var squantityy = Convert.ToInt32(Console.ReadLine());
+            serviceStock.UpdateStock(sid, spidd, swidd, squantityy);
+            break;
+        case "16":
+            System.Console.Write("Enter stock's id to delete: ");
+            var stockiddelete = Convert.ToInt32(Console.ReadLine());
+            serviceStock.DeleteStock(stockiddelete);
             break;
         case "0":
             return;
