@@ -4,6 +4,7 @@ var service = new CategoriesServices();
 var serviceProduct = new ProductcService();
 var serviceWarehouse = new WarehousesServices();
 var serviceStock = new StockService();
+var serviceCustomer = new CustomersService();
 
 
 while (true)
@@ -34,6 +35,13 @@ while (true)
     14 - Add new stock.
     15 - Update stock.
     16 - Delete stock.
+
+    <--- CUSTOMERS --->
+    17 - Show all customers.
+    18 - Add new customer.
+    19 - Update customer.
+    20 - Delete customer.
+
     0 - 🚷 Exit!");
     System.Console.WriteLine("====================================================");
     System.Console.WriteLine();
@@ -162,7 +170,44 @@ while (true)
             var stockiddelete = Convert.ToInt32(Console.ReadLine());
             serviceStock.DeleteStock(stockiddelete);
             break;
+
+        case "17":
+            System.Console.WriteLine("========================================================================");
+            serviceCustomer.ShowAllCustomers();
+            System.Console.WriteLine("========================================================================");
+            break;
+        case "18":
+            Console.Write("Enter customer's name: ");
+            string? cname = Console.ReadLine();
+            Console.Write("Enter customer's email: ");
+            string? cemail = Console.ReadLine();
+            Console.Write("Enter customer's phone number: ");
+            string? cphonenumber = Console.ReadLine();
+            Console.Write("Enter customer's adress: ");
+            string cadress = Console.ReadLine();
+            serviceCustomer.AddNewCustomer(cname, cemail, cphonenumber, cadress);
+            break;
+        case "19":
+            Console.Write("Enter customer's id to update: ");
+            int cid = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter new name: ");
+            string? cnname = Console.ReadLine();
+            Console.Write("Enter new email: ");
+            string? cnemail = Console.ReadLine();
+            Console.Write("Enter new phone number: ");
+            string? cnphonenumber = Console.ReadLine();
+            Console.Write("Enter new adress: ");
+            string? cnadress = Console.ReadLine();
+            serviceCustomer.UpdateCustomer(cid, cnname, cnemail, cnphonenumber, cnadress);
+            break;
+        case "20":
+            Console.Write("Enter customer's id to delete: ");
+            var cidtd = Convert.ToInt32(Console.ReadLine());
+            serviceCustomer.DeleteCustomer(cidtd);
+            break;
         case "0":
+            return;
+        default:
             return;
     }
 }
